@@ -1,134 +1,149 @@
-# sky-candle-tracker
-utomatic Sky: Children of the Light candle tracking Google Sheet + Apps Scrip
+Sky Candle Tracker — Setup Guide (EN)
 
-# Sky Candle Tracker — Automatic Google Sheets Tracker  
-Track candles, seasonal candles, spending, earnings, and daily reset logic for **Sky: Children of the Light**.
+Automatic candle tracker for Sky: Children of the Light built with Google Sheets + Apps Script.
 
-This project provides a **ready-to-use Google Sheet + Apps Script** that automatically:
-- Creates a new row every day at the game's reset time
-- Calculates earned candles (with and without spending)
-- Tracks seasonal candles the same way
-- Builds statistics: last 7 days, monthly average, totals
-- Supports manual edits safely without breaking the sheet
-- Works in GMT+5 (Almaty) — adjustable
+This tool was created as a personal project, for learning Google Sheets automation and for convenient daily tracking in Sky.
+Anyone is welcome to improve, remix or extend it — feel free to build your own version if you have more experience or new ideas.
 
----
+⸻
 
-## ⭐ Features
+⭐ Features
 
-### 🔥 Daily Automation
-- Auto-create new day at **13:00** (winter reset)
-- Auto-fill yesterday’s total → keeps continuity
+🔥 Daily Automation
+	•	Automatically creates a new row at Sky’s daily reset time
+	•	Carries over yesterday’s balance
+	•	Works even if you edit the sheet manually
 
-### 🕯 Candle Tracking
-- Earned with spending  
-- Earned without spending  
-- Detects negative or unusual values safely
+🕯 Normal Candle Tracking
+	•	Earned
+	•	Spent
+	•	Net income
+	•	Built-in protection from negative or invalid values
 
-### 🧨 Seasonal Candle Tracking
-- Same logic as normal candles  
-- Earned with/without spending  
-- Fully integrated in statistics
+🧨 Seasonal Candle Tracking
+	•	Same logic as normal candles
+	•	Earned/spent/net
+	•	Fully included in statistics
 
-### 📊 Statistics Page
-Automatically updates:
-- Last 7 days total
-- Average per day (7 days & monthly)
-- Total earned candles
-- Total spent candles
-- Seasonal totals
-- Current balance
-- Last updated timestamp
+📊 Statistics Page
 
----
+Auto-generated metrics:
+	•	Last 7 days total
+	•	7-day average
+	•	Monthly average
+	•	Total earned
+	•	Total spent
+	•	Seasonal totals
+	•	Current balance
+	•	Last updated timestamp
 
-## 📘 Installation Guide
+⸻
 
-### 1. Make a copy of the template Sheet  
-Create your own sheet with the required columns:
+📘 Installation Guide
 
-```
-Дата | Вчера | Сегодня | Потрачено | Получено | Вообщем | Сезонные🧨 | Потрачено🧨 | Получено🧨 | Примечание
-```
+1. Create Your Sheet
 
-(Or copy the sample sheet if provided)
+Create a sheet named УЧЕТ (you may rename later) with these columns:
 
----
+Date | Yesterday | Today | Spent | Earned | Total | Seasonal🧨 | Seasonal Spent🧨 | Seasonal Earned🧨 | Notes
 
-### 2. Open Apps Script
-Go to:  
-**Extensions → Apps Script**
+Create another sheet named СТАТИСТИКА (empty).
 
-Delete any default code.
+❗ Column names can be in English —
+just make sure to update the names inside the script if you change them.
 
----
+⸻
 
-### 3. Paste the content of `/src/Code.gs`
+2. Open Google Apps Script
 
-Save the project.
+In your Google Sheet:
+Extensions → Apps Script
 
----
+Delete the default code.
 
-### 4. Set Timezone  
-In Apps Script:
+⸻
 
-`Project Settings → Script Timezone → GMT+5`
+3. Paste the script
 
----
+Copy the content of /src/Code.gs into your project and save it.
 
-### 5. Create the daily trigger  
+⸻
+
+4. Set the Time Zone
+
+Google Apps Script:
+Project Settings → Script Timezone
+
+Set it to GMT+5 (Asia/Almaty) — this is the default Sky reset time used in the script.
+
+🕒 Important:
+If you live in a different region, you must adjust the trigger time so it matches your local Sky reset time.
+
+For example:
+	•	NA servers reset earlier/later
+	•	EU has a different local reset depending on DST
+	•	Some countries shift time seasonally (summer/winter resets)
+
+⸻
+
+⏰ 5. Create the Daily Trigger
+
 Go to:
+Triggers → Add Trigger
 
-**Triggers → Add Trigger**
+Set:
+	•	Function: addDailyRowIfNeeded
+	•	Event Type: Time-based
+	•	Frequency: Daily
+	•	Time: 13:00 (GMT+5) ← default Sky winter reset for Kazakhstan
 
-- Function: `addDailyRowIfNeeded`
-- Type: Time based
-- Frequency: Daily
-- Time: 13:00
+If your region has a different reset time, set the time accordingly.
 
-This matches Sky’s daily reset (winter time).
+⸻
 
----
+🔧 Manual Recalculation
 
-## 🔧 Recalculate Manually
+If you change something manually:
+	•	Run → recalcAll()
+	•	Run → updateStats()
 
-If something gets changed by hand:
+Google will ask for permission the first time.
 
-`Run → recalcAll()`
+⸻
 
----
+🎯 Recommended Sheet Settings
+	•	Freeze the first row
+	•	Freeze the first column
+	•	Auto-size columns
+	•	Add conditional formatting:
+	•	negative numbers → red
+	•	empty values → gray
 
-## 🎯 Recommended Sheet Settings
+⸻
 
-- Conditional formatting for negative values
-- Freeze first row
-- Freeze first column
-- Auto-sizing
+🧩 Folder Structure
 
----
-
-## 🧩 Folder Structure
-
-```
 sky-candle-tracker/
 │
 ├── README.md
 ├── LICENSE
 │
 ├── docs/
-│   ├── setup_guide.md
+│   ├── setup_guideEN.md
+│   ├── setup_guideRU.md
 │   ├── troubleshooting.md
 │   └── screenshots/
 │
 └── src/
     └── Code.gs
-```
 
----
 
-## 📄 License
-MIT — free to use, modify, share.
+⸻
 
----
+📄 License
 
-Enjoy tracking your Sky candles automatically! ☁🕯✨
+MIT License — free to use, modify and share.
+
+⸻
+
+☁🕯✨ Enjoy your fully automated candle tracking!
