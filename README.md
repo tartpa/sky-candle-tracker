@@ -119,12 +119,10 @@ Google will ask for permission the first time.
 	•	negative numbers → red
 	•	empty values → gray
 
-⸻
-
 🧩 Folder Structure
 
 sky-candle-tracker/
-│
+│																	
 ├── README.md
 ├── LICENSE
 │
