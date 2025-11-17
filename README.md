@@ -118,11 +118,11 @@ Google will ask for permission the first time.
 	•	Add conditional formatting:
 	•	negative numbers → red
 	•	empty values → gray
-
-🧩 Folder Structure
-
+    
+🧩 Folder Structure    
+```text
 sky-candle-tracker/
-│																	
+│
 ├── README.md
 ├── LICENSE
 │
@@ -134,8 +134,7 @@ sky-candle-tracker/
 │
 └── src/
     └── Code.gs
-
-
+```
 ⸻
 
 📄 License
